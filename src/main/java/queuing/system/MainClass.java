@@ -1,32 +1,52 @@
 package queuing.system;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+
 public class MainClass {
-	public static void main(String args[]) {
-		for (int j = 6; j < 24; j++) {
-			System.out.print(j * 1 + "    ");
-			if (j % 3 == 0)
+	public static void main(String args[]) throws IOException {
+		FileWriter writer = new FileWriter("note.txt", true);
+		QueuingSystem q = new QueuingSystem();
+		System.out.println(q.toString() + "\n");
+		//writer.write(q.toString() + "\n");
+		for (int j = 1; j < 100; j++) {
+
+			System.out.print(" " + j * 1 + "   ");
+			//writer.write(" " + j * 1 + "   ");
+			if (j % 3 == 0) {
 				System.out.print(" ");
+				//writer.write(" ");
+			}
 		}
 		System.out.println();
-
-		for (int i = 7; i < 24; i++) {
-			// QueuingSystem qs = new RQSystem();
-			System.out.print(i * 1 + "    ");
-			for (int j = 7; j < 24; j++) {
-				// QueuingSystem qs = new RQSystemB();
-				QueuingSystem qs = new RQSystemRes();
-				qs.setServingModeF(1 * i);
-				qs.setServingModeS(1 * j);
+		writer.write("\n");
+		for (int i = 2; i < 125; i++) {
+			if (i < 10) {
+				System.out.print(" ");
+				//writer.write(" ");
+			}
+			//System.out.print(i * 5 + "    ");
+			//writer.write(i * 5 + "    ");
+			for (int j = 2; j < 125; j++) {
+				QueuingSystem qs = new QueuingSystem();
+				// StaticQSystem qs = new StaticQSystem();
+				qs.setServingModeF(4*i);
+				qs.setServingModeS(4*j);
 				qs.launch();
-				double d1 = Math.round(qs.result * 10);
+				double d1 = Math.round(qs.result);
 				double d2 = Math.round(qs.yS * 1000);
-				if (d1 > 1000)
+				if ((d1 >= 1000) || (d1 <= 99)) {
 					System.out.print("----" + "| ");
-				else
-					System.out.print(d1 / 10 + "| ");
+					writer.write("-" + "| ");
+				} else {
+					System.out.print(d1 + "| ");
+					writer.write(0 + "| ");
+				}
 			}
 
 			System.out.println();
+			writer.write("\n");
 		}
 
 //		StaticQSystem qs = new StaticQSystem();

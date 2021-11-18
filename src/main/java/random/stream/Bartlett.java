@@ -10,6 +10,10 @@ public class Bartlett extends Puasson {
 	private int fastCars;
 	private int slowCars;
 
+	public String toString() {
+		return "r and g: " + r + " " + g;
+	}
+
 	public Bartlett() {
 		super();
 		generateCars();

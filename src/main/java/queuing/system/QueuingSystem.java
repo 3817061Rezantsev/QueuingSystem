@@ -15,8 +15,8 @@ public class QueuingSystem {
 	protected double mashineTime = 0;
 	protected double waitingModeF = 1;
 	protected double waitingModeS = 1;
-	protected double servingModeF = 4;
-	protected double servingModeS = 4;
+	protected double servingModeF = 6;
+	protected double servingModeS = 6;
 	protected double servingTime = 2;
 	protected double servingTimeS = 2;
 	protected int servedF = 0;
@@ -35,6 +35,12 @@ public class QueuingSystem {
 		secondStream = new Puasson(lS);
 		firstQueue = new LinkedList<>();
 		secondQueue = new LinkedList<>();
+	}
+
+	public String toString() {
+		return "Lyambda of the first and second stream: " + lF + " " + lS + "\n"
+				+ "Waiting mode time of the first and second stream: " + waitingModeF + " " + waitingModeS + "\n" +
+				"Serving time of the first and second stream: " + servingTime + " " + servingTimeS;
 	}
 
 	public void launch() {
